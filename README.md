@@ -30,6 +30,8 @@ Moduły które chcemy zaimplementować:
 ### Oprogramowanie
 Można albo napisać aplikację jak w store na telefony wtedy:
 - Android studio?
+
+
 lecz można zrobić stronę internetową wtedy:
 - HTML
 - CSS
