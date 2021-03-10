@@ -59,3 +59,28 @@ Mikrokontroler:
 ## Początkowy zarys
 
 ![schemat początkowy](schemat_prosty.jpg)
+
+## <b> Podział programu </b>
+
+## ESP8266
+
+- odczytywanie pomiaru czujnika temperatury
+- przeliczanie oporu na wartość temperatury
+- Konwersja danych na pakiety do przesłania
+- Komunikacja wifi
+- przełączanie przekaźnika
+
+<b> Dodatkowo </b>
+
+- przeliczanie temperatury na kolor LEDów
+
+## Strona internetowa
+
+- Pokazanie temperatury
+- Przycisk włącz/wyłącz
+- Regulacja temperatury
+- Powiadomienia
+
+<b> Dodatkowo </b>
+
+- Wykresy temperatur do np. Zaparzania Herbaty
