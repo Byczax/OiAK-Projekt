@@ -1,5 +1,8 @@
 # OiAK-Projekt </br> Ulepszenia prostych przyborów domowych - Czajnik
 
+Link do repozytorium:
+https://github.com/Byczax/OiAK-Projekt
+
 |      Wydział elektroniki       |  Kierunek: informatyka techniczna |
 |:-------------------------------|------------------------:|
 | Grupa zajęciowa: Wt 7:30       | Semestr: 2020/2021 Lato |
@@ -52,3 +55,7 @@ Mikrokontroler:
 - Podłączenie czajnika
 - Połączenie z serwerem (stroną internetową)
 - Połączenie LEDów
+
+## Początkowy zarys
+
+![schemat początkowy](schemat_prosty.jpg)
