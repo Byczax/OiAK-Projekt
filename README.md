@@ -73,6 +73,7 @@ Mikrokontroler:
 <b> Dodatkowo </b>
 
 - przeliczanie temperatury na kolor LEDów
+- Sterowanie LED
 
 ## Strona internetowa
 
