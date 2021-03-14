@@ -1,7 +1,7 @@
 # OiAK-Projekt </br> Ulepszenia prostych przyborów domowych - Czajnik
 
 Link do repozytorium:
-https://github.com/Byczax/OiAK-Projekt
+<https://github.com/Byczax/OiAK-Projekt>
 
 |      Wydział elektroniki       |  Kierunek: informatyka techniczna |
 |:-------------------------------|------------------------:|
@@ -60,7 +60,7 @@ Mikrokontroler:
 
 ![schemat początkowy](schemat_prosty.jpg)
 
-## <b> Podział programu </b>
+## **Podział programu**
 
 ## ESP8266
 
@@ -70,7 +70,7 @@ Mikrokontroler:
 - Komunikacja wifi
 - przełączanie przekaźnika
 
-<b> Dodatkowo </b>
+### Dodatkowe opcje
 
 - przeliczanie temperatury na kolor LEDów
 - Sterowanie LED
@@ -82,6 +82,6 @@ Mikrokontroler:
 - Regulacja temperatury
 - Powiadomienia
 
-<b> Dodatkowo </b>
+### Dodatkowe informacje
 
 - Wykresy temperatur do np. Zaparzania Herbaty

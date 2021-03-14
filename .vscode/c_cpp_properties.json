@@ -8,8 +8,6 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "C:/Users/byczq/OneDrive/Dokumenty/PlatformIO/Projects/light_bulb/include",
-                "C:/Users/byczq/OneDrive/Dokumenty/PlatformIO/Projects/light_bulb/src",
                 "C:/Users/byczq/.platformio/packages/framework-esp8266-rtos-sdk/include",
                 "C:/Users/byczq/.platformio/packages/framework-esp8266-rtos-sdk/extra_include",
                 "C:/Users/byczq/.platformio/packages/framework-esp8266-rtos-sdk/driver_lib/include",
@@ -27,8 +25,6 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "C:/Users/byczq/OneDrive/Dokumenty/PlatformIO/Projects/light_bulb/include",
-                    "C:/Users/byczq/OneDrive/Dokumenty/PlatformIO/Projects/light_bulb/src",
                     "C:/Users/byczq/.platformio/packages/framework-esp8266-rtos-sdk/include",
                     "C:/Users/byczq/.platformio/packages/framework-esp8266-rtos-sdk/extra_include",
                     "C:/Users/byczq/.platformio/packages/framework-esp8266-rtos-sdk/driver_lib/include",
