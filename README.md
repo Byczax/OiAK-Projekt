@@ -64,7 +64,7 @@ Mikrokontroler:
 
 ## ESP8266
 
-- odczytywanie pomiaru czujnika temperatury
+- odczytywanie pomiaru czujnika temperatury (termistor)
 - przeliczanie oporu na wartość temperatury
 - Konwersja danych na pakiety do przesłania
 - Komunikacja wifi
@@ -84,4 +84,4 @@ Mikrokontroler:
 
 ### Dodatkowe informacje
 
-- Wykresy temperatur do np. Zaparzania Herbaty
+- Wykresy temperatur do np. zaparzania herbaty
