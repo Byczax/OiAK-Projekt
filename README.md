@@ -18,11 +18,12 @@ Link do repozytorium:
 Nasz projekt ma na celu ulepszenie prostego urządzenia domowego w naszym przypadku czajnika.
 Moduły które chcemy zaimplementować:
 
-- Pomiar temperatury
-- Uruchamianie za pomocą strony internetowej
-- Otrzymywanie powiadomień o wykonanej akcji (Zagotowanie się wody)
-- Podświetlenie led zmieniające barwę w zależności od temperatury wody
-- Czujnik pojemności czajnika
+- Bezprzewodowa komunikacja przez moduł WiFi (4 tygodnie)
+- Pomiar temperatury (wyliczanie z oporu termistora) (2 tydzień)
+- Uruchamianie za pomocą strony internetowej (3-4 tygodnie)
+- Otrzymywanie powiadomień o wykonanej akcji (Zagotowanie się wody), (1 tydzień)
+- Podświetlenie led zmieniające barwę w zależności od temperatury wody (dodatkowe, 2 tygodnie)
+- Czujnik pojemności czajnika (dodatkowe, pływak bądź czujnik laserowy???)
 
 ## Potrzebne elementy
 
