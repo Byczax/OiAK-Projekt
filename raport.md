@@ -20,3 +20,4 @@
 - Próba przetłumaczenia wszystkiego na C, następnie na Assembly
 - Dodanie sterowania LED
 - Wyświetlanie temperatury w czasie rzeczywistym
+- Dobranie odpowiednich parametrów do mierzonej temperatury
