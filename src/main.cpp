@@ -17,8 +17,8 @@ const double C = 0.0000000876741;
 
 
 // Replace with your network credentials
-const char* ssid     = "NETIASPOT-2.4GHz-121240";
-const char* password = "TyeTyL7oaZx7";
+const char* ssid     = "TUTAJ NAZWA WIFI";
+const char* password = "TUTAJ HASŁO WIFI";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -149,9 +149,9 @@ void loop(){
             client.println("<p>LED - State " + output5State + "</p>");
             // If the output5State is off, it displays the ON button       
             if (output5State=="off") {
-              client.println("<p><a href=\"/5/on\"><button class=\"button\">ON</button></a></p>");
+              client.println("<p><a href=\"/LED/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/5/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/LED/off\"><button class=\"button button2\">OFF</button></a></p>");
             } 
             
                
@@ -159,9 +159,9 @@ void loop(){
             client.println("<p>ESP8266 - State " + output4State + "</p>");
             // If the output4State is off, it displays the ON button       
             if (output4State=="off") {
-              client.println("<p><a href=\"/4/on\"><button class=\"button\">ON</button></a></p>");
+              client.println("<p><a href=\"/ESP/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/4/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/ESP/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
             client.println("<p><b>Water temperature</b></p>");
             client.print(temperature());
