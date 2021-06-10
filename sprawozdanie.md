@@ -1,4 +1,4 @@
-# OiAK - Projekt </br> Zdalny pomiar temperatury
+# 1. OiAK - Projekt </br> Zdalny pomiar temperatury
 
 | Wydział elektroniki      | Kierunek: informatyka techniczna |
 | :----------------------- | -------------------------------: |
@@ -10,26 +10,26 @@
 |  Byczko Maciej   |
 | Zuzanna Jasińska |
 
-## Spis treści
+## 1.1. Spis treści
 
-- [OiAK - Projekt </br> Zdalny pomiar temperatury](#oiak---projekt-br-zdalny-pomiar-temperatury)
-  - [Spis treści](#spis-treści)
-  - [Wstęp](#wstęp)
-    - [Wykorzystane narzędzia](#wykorzystane-narzędzia)
-      - [Języki programowania](#języki-programowania)
-      - [Narzędzia informatyczne](#narzędzia-informatyczne)
-  - [Pomiar temperatury](#pomiar-temperatury)
-  - [Podłączenie do WIFI](#podłączenie-do-wifi)
-  - [Wnioski](#wnioski)
-  - [Bibliografia](#bibliografia)
+- [1. OiAK - Projekt </br> Zdalny pomiar temperatury](#1-oiak---projekt-br-zdalny-pomiar-temperatury)
+  - [1.1. Spis treści](#11-spis-treści)
+  - [1.2. Wstęp](#12-wstęp)
+    - [1.2.1. Wykorzystane narzędzia](#121-wykorzystane-narzędzia)
+      - [1.2.1.1. Języki programowania](#1211-języki-programowania)
+      - [1.2.1.2. Narzędzia informatyczne](#1212-narzędzia-informatyczne)
+  - [1.3. Pomiar temperatury](#13-pomiar-temperatury)
+  - [1.4. Podłączenie do WIFI](#14-podłączenie-do-wifi)
+  - [1.5. Wnioski](#15-wnioski)
+  - [1.6. Bibliografia](#16-bibliografia)
 
-## Wstęp
+## 1.2. Wstęp
 
 Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na podstawie termistora (termometru oporowego).
 
-### Wykorzystane narzędzia
+### 1.2.1. Wykorzystane narzędzia
 
-#### Języki programowania
+#### 1.2.1.1. Języki programowania
 
 - C++
   - Główna struktura projektu
@@ -38,7 +38,7 @@ Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na pods
 - HTML (inline)
   - Wyświetlenie pod przypisanym adresem strony z wynikiem pomiaru
 
-#### Narzędzia informatyczne
+#### 1.2.1.2. Narzędzia informatyczne
 
 - PlatformIO
   - Uruchamianie kodu na podłączonym mikrokontrolerze
@@ -47,7 +47,11 @@ Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na pods
 - Github
   - Narzędzie wykorzystane do współpracy zdalnej
 
-## Pomiar temperatury
+## 1.3. Pomiar temperatury
+
+Aby wyliczyć temperaturę mierzoną przez termistor musieliśmy skorzystać ze wzorów zamieszczonych w dokumentacjach, aby się zgadzałą charakterystyka zależności oporu do temperatury
+
+![wykres zależności](./img/NTC10k.png)
 
 ```cpp
 double Volt, Rth, temperature, adc_value; // variable declaration
@@ -64,17 +68,10 @@ temperature = (1 / (A + (B * log(Rth)) + (C * pow((log(Rth)),3))));   // Tempera
 temperature = temperature - 273.15;  // Temperature in degree celsius
 ```
 
-## Podłączenie do WIFI
+## 1.4. Podłączenie do WIFI
 
-Komunikacja WIFI nie była wyzwaniem lecz było bardzo dużo problemów ponieważ nie chciała działać w języku C, przez co zostaliśmy zmuszeni do przejścia na język C++ gdzie mogliśmy zawrzeć potrzebne nam biblioteki
-
-```cpp
-// Load Wi-Fi library
-#include <ESP8266WiFi.h>
-
-// Set web server port number to 80
-WiFiServer server(80);
-```
+Komunikacja WIFI nie była wyzwaniem lecz było bardzo dużo problemów ponieważ nie chciała działać w języku C, przez co zostaliśmy zmuszeni do przejścia na język C++ gdzie mogliśmy zawrzeć potrzebną nam bibliotekę `ESP8266WiFi.h` która pozwala na utworzenie topologii siatki sieciowej.
+Wykorzystaliśmy z niej możliwość stworzenia z esp8266 stacji pomiarowej + hosting strony.
 
 ```cpp
 // Connect to Wi-Fi network with SSID and password
@@ -87,11 +84,12 @@ WiFiServer server(80);
     Serial.print(".");
   }
 ```
-## Wnioski
+
+## 1.5. Wnioski
 
 Projekt był bardzo dużym wyzwaniem ponieważ po raz pierwszy mieliśmy styczność z mikrokontrelami oraz podzespołami użytymi do zbudowania schematu, potrzebowaliśmy do tego pomocy specjalisty.
 
-## Bibliografia
+## 1.6. Bibliografia
 
 <https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html#connect>
 
