@@ -1,6 +1,7 @@
 // Load Wi-Fi library
 #include <ESP8266WiFi.h>
-
+#include <NTPClient.h>
+#include <WiFiUdp.h>
 
 const double VCC = 3.3;             // NodeMCU on board 3.3v vcc
 const double R2 = 10000;            // 10k ohm series resistor
@@ -9,6 +10,11 @@ const double adc_resolution = 1023; // 10-bit adc
 const double A = 0.001129148;   // thermistor equation parameters
 const double B = 0.000234125;
 const double C = 0.0000000876741; 
+
+
+WiFiUDP ntpUDP;
+const long utcOffsetInSeconds = 3600*2;
+NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffsetInSeconds);
 
 
 // Replace with your network credentials
@@ -22,7 +28,7 @@ WiFiServer server(80);
 String header;
 
 // Auxiliar variables to store the current output state
-String outpulLedState = "off";
+String outputStateLED = "off";
 String output4State = "off";
 
 // Assign output variables to GPIO pins
@@ -37,7 +43,7 @@ unsigned long previousTime = 0;
 const long timeoutTime = 2000;
 
 void setup() {
-  Serial.begin(115200); // define baud rate for serial communication
+  Serial.begin(115200);
   // Initialize the output variables as outputs
   pinMode(outputLED, OUTPUT);
   pinMode(output4, OUTPUT);
@@ -85,6 +91,10 @@ float temperature(){
 void loop(){
   WiFiClient client = server.available();   // Listen for incoming clients
 
+  timeClient.update();
+  String formattedTime = timeClient.getFormattedTime();
+  
+  
   if (client) {                             // If a new client connects,
     Serial.println("New Client.");          // print a message out in the serial port
     String currentLine = "";                // make a String to hold incoming data from the client
@@ -108,13 +118,13 @@ void loop(){
             client.println();
             
             // turns the GPIOs on and off
-            if (header.indexOf("GET /5/on") >= 0) {
+            if (header.indexOf("GET /led/on") >= 0) {
               Serial.println("LED on");
-              outpulLedState = "on";
+              outputStateLED = "on";
               digitalWrite(outputLED, HIGH);
-            } else if (header.indexOf("GET /5/off") >= 0) {
+            } else if (header.indexOf("GET /led/off") >= 0) {
               Serial.println("LED off");
-              outpulLedState = "off";
+              outputStateLED = "off";
               digitalWrite(outputLED, LOW);
             } else if (header.indexOf("GET /4/on") >= 0) {
               Serial.println("GPIO 4 on");
@@ -142,26 +152,29 @@ void loop(){
             client.println("<body><h1>ESP8266 Web Server</h1>");
             
             // Display current state, and ON/OFF buttons for LED  
-            client.println("<p>LED - State " + outpulLedState + "</p>");
-            // If the outpulLedState is off, it displays the ON button       
-            if (outpulLedState=="off") {
-              client.println("<p><a href=\"/LED/on\"><button class=\"button\">ON</button></a></p>");
+            client.println("<p>LED - State " + outputStateLED + "</p>");
+            // If the outputStateLED is off, it displays the ON button       
+            if (outputStateLED=="off") {
+              client.println("<p><a href=\"/led/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/LED/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/led/off\"><button class=\"button button2\">OFF</button></a></p>");
             } 
             
+            
                
-            // Display current state, and ON/OFF buttons for ESP8266
-            client.println("<p>ESP8266 - State " + output4State + "</p>");
-            // If the output4State is off, it displays the ON button       
-            if (output4State=="off") {
-              client.println("<p><a href=\"/ESP/on\"><button class=\"button\">ON</button></a></p>");
-            } else {
-              client.println("<p><a href=\"/ESP/off\"><button class=\"button button2\">OFF</button></a></p>");
-            }
-            client.println("<p><b>Water temperature</b></p>");
-            client.print(temperature());
-            client.println("<p><sup>o</sup>C</p>");
+            // // Display current state, and ON/OFF buttons for ESP8266
+            // client.println("<p>ESP8266 - State " + output4State + "</p>");
+            // // If the output4State is off, it displays the ON button       
+            // if (output4State=="off") {
+            //   client.println("<p><a href=\"/ESP/on\"><button class=\"button\">ON</button></a></p>");
+            // } else {
+            //   client.println("<p><a href=\"/ESP/off\"><button class=\"button button2\">OFF</button></a></p>");
+            // }
+            client.println("<p><b>Temperature</b></p>");
+            client.printf("%.2f %s",temperature(),"<sup>o</sup>C");
+            // client.println("<p><sup>o</sup>C</p>");
+
+            client.printf("<p>Godzina: %s</p>",formattedTime.c_str());
             client.println("</body></html>");
             
             // The HTTP response ends with another blank line
