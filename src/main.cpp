@@ -22,11 +22,11 @@ WiFiServer server(80);
 String header;
 
 // Auxiliar variables to store the current output state
-String output5State = "off";
+String outpulLedState = "off";
 String output4State = "off";
 
 // Assign output variables to GPIO pins
-const int output5 = 5;
+const int outputLED = 0;
 const int output4 = 4;
 
 // Current time
@@ -39,10 +39,10 @@ const long timeoutTime = 2000;
 void setup() {
   Serial.begin(115200); // define baud rate for serial communication
   // Initialize the output variables as outputs
-  pinMode(output5, OUTPUT);
+  pinMode(outputLED, OUTPUT);
   pinMode(output4, OUTPUT);
   // Set outputs to LOW
-  digitalWrite(output5, LOW);
+  digitalWrite(outputLED, LOW);
   digitalWrite(output4, LOW);
 
   // Connect to Wi-Fi network with SSID and password
@@ -109,13 +109,13 @@ void loop(){
             
             // turns the GPIOs on and off
             if (header.indexOf("GET /5/on") >= 0) {
-              Serial.println("GPIO 5 on");
-              output5State = "on";
-              digitalWrite(output5, HIGH);
+              Serial.println("LED on");
+              outpulLedState = "on";
+              digitalWrite(outputLED, HIGH);
             } else if (header.indexOf("GET /5/off") >= 0) {
-              Serial.println("GPIO 5 off");
-              output5State = "off";
-              digitalWrite(output5, LOW);
+              Serial.println("LED off");
+              outpulLedState = "off";
+              digitalWrite(outputLED, LOW);
             } else if (header.indexOf("GET /4/on") >= 0) {
               Serial.println("GPIO 4 on");
               output4State = "on";
@@ -142,9 +142,9 @@ void loop(){
             client.println("<body><h1>ESP8266 Web Server</h1>");
             
             // Display current state, and ON/OFF buttons for LED  
-            client.println("<p>LED - State " + output5State + "</p>");
-            // If the output5State is off, it displays the ON button       
-            if (output5State=="off") {
+            client.println("<p>LED - State " + outpulLedState + "</p>");
+            // If the outpulLedState is off, it displays the ON button       
+            if (outpulLedState=="off") {
               client.println("<p><a href=\"/LED/on\"><button class=\"button\">ON</button></a></p>");
             } else {
               client.println("<p><a href=\"/LED/off\"><button class=\"button button2\">OFF</button></a></p>");
