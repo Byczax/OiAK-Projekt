@@ -18,6 +18,7 @@
     - [1.2.1. Wykorzystane narzędzia](#121-wykorzystane-narzędzia)
       - [1.2.1.1. Języki programowania](#1211-języki-programowania)
       - [1.2.1.2. Narzędzia informatyczne](#1212-narzędzia-informatyczne)
+  - [Układ elektroniczny](#układ-elektroniczny)
   - [1.3. Pomiar temperatury](#13-pomiar-temperatury)
   - [1.4. Podłączenie do WIFI](#14-podłączenie-do-wifi)
   - [1.5. Wnioski](#15-wnioski)
@@ -47,6 +48,9 @@ Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na pods
 - Github
   - Narzędzie wykorzystane do współpracy zdalnej
 
+## Układ elektroniczny
+
+![schemat](./img/schemee-picture.png)
 ## 1.3. Pomiar temperatury
 
 Aby wyliczyć temperaturę mierzoną przez termistor musieliśmy skorzystać ze wzorów zamieszczonych w dokumentacjach, aby się zgadzałą charakterystyka zależności oporu do temperatury
