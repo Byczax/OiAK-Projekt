@@ -59,7 +59,7 @@ Mikrokontroler:
 
 ## Początkowy zarys
 
-![schemat początkowy](schemat_prosty.jpg)
+![schemat początkowy](./img/schemat_prosty.jpg)
 
 ## **Podział programu**
 
