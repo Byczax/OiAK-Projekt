@@ -27,7 +27,7 @@ WiFiServer server(80);
 // Variable to store the HTTP request
 String header;
 
-// Auxiliar variables to store the current output state
+// Auxiliary variables to store the current output state
 String outputStateLED = "off";
 String output4State = "off";
 
@@ -71,6 +71,8 @@ float temperature(){
   double Vout, Rth, temperature, adc_value; 
 
   adc_value = analogRead(A0);
+  // extern calculate_temperature(double adc_value);
+  // temperature = calculate_temperature(adc_value);
   Vout = (adc_value * VCC) / adc_resolution;
   Rth = (VCC * R2 / Vout) - R2;
 
