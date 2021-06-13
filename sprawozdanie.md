@@ -22,6 +22,7 @@
   - [1.4. Układ fizyczny](#14-układ-fizyczny)
   - [1.5. Wykorzystane biblioteki](#15-wykorzystane-biblioteki)
   - [1.6. Pomiar temperatury](#16-pomiar-temperatury)
+  - [Lampka LED](#lampka-led)
   - [1.7. Podłączenie do WIFI](#17-podłączenie-do-wifi)
   - [1.8. Strona internetowa](#18-strona-internetowa)
     - [1.8.1. Wygląd strony internetowej](#181-wygląd-strony-internetowej)
@@ -69,7 +70,7 @@ Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na pods
 
 ## 1.6. Pomiar temperatury
 
-Aby wyliczyć temperaturę mierzoną przez termistor musieliśmy skorzystać ze wzorów zamieszczonych w dokumentacjach, aby się zgadzałą charakterystyka zależności oporu do temperatury
+Aby wyliczyć temperaturę mierzoną przez termistor musieliśmy skorzystać ze wzorów zamieszczonych w dokumentacjach, aby się zgadzała charakterystyka zależności oporu do temperatury
 
 ![wykres zależności](./img/NTC10k.png)
 
@@ -89,6 +90,10 @@ temperature = temperature - 273.15;  // Temperature in degree celsius
 ```
 
 Większość wzorów jest oparta na jednostce `Kelvin` przez co musieliśmy zastosować konwersję na <sup>o</sup>C.
+
+## Lampka LED
+
+Wbudowana lampka LED w ESP8266 znajduje się pod portem 4 GPIO i możemy nią sterować za pomocą przycisku, który wyświetla się na stronie internetowej, pokazujemy za pomocą tego że możemy w zależności od nas sterować danym LEDem i np. w przyszłości zrobić np. migające powiadomienie gdy będzie temperatura ustalona przez nas.
 
 ## 1.7. Podłączenie do WIFI
 

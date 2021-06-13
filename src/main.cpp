@@ -29,7 +29,7 @@ String header;
 String outputStateLED = "off";
 
 // Assign output variable to GPIO pin
-const int outputLED = 0;
+const int outputLED = 4;
 
 // Current time
 unsigned long currentTime = millis();
