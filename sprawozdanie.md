@@ -19,13 +19,14 @@
       - [1.2.1.1. Języki programowania](#1211-języki-programowania)
       - [1.2.1.2. Narzędzia informatyczne](#1212-narzędzia-informatyczne)
   - [1.3. Układ elektroniczny](#13-układ-elektroniczny)
-  - [1.4. Wykorzystane biblioteki](#14-wykorzystane-biblioteki)
-  - [1.5. Pomiar temperatury](#15-pomiar-temperatury)
-  - [1.6. Podłączenie do WIFI](#16-podłączenie-do-wifi)
-  - [1.7. Strona internetowa](#17-strona-internetowa)
-    - [1.7.1. Wygląd strony internetowej](#171-wygląd-strony-internetowej)
-  - [1.8. Wnioski](#18-wnioski)
-  - [1.9. Bibliografia](#19-bibliografia)
+  - [1.4. Układ fizyczny](#14-układ-fizyczny)
+  - [1.5. Wykorzystane biblioteki](#15-wykorzystane-biblioteki)
+  - [1.6. Pomiar temperatury](#16-pomiar-temperatury)
+  - [1.7. Podłączenie do WIFI](#17-podłączenie-do-wifi)
+  - [1.8. Strona internetowa](#18-strona-internetowa)
+    - [1.8.1. Wygląd strony internetowej](#181-wygląd-strony-internetowej)
+  - [1.9. Wnioski](#19-wnioski)
+  - [1.10. Bibliografia](#110-bibliografia)
 
 ## 1.2. Wstęp
 
@@ -55,13 +56,18 @@ Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na pods
 
 ![schemat](./img/schemee-picture.png)
 
-## 1.4. Wykorzystane biblioteki
+## 1.4. Układ fizyczny
+
+![fiz2](img/schemat_fizyczny2.jpg)
+![fiz1](img\schemat_fizyczny1.jpg)
+
+## 1.5. Wykorzystane biblioteki
 
 - `ESP8266WiFi.h` - Pozwala na komunikację wifi, możliwość stworzenia także z urządzenia access pointa
 - `NTPClient.h` - Odczytanie czasu rzeczywistego
 - `WiFiUdp.h` - Ustawianie stałego ip oraz protokoły przesyłania
 
-## 1.5. Pomiar temperatury
+## 1.6. Pomiar temperatury
 
 Aby wyliczyć temperaturę mierzoną przez termistor musieliśmy skorzystać ze wzorów zamieszczonych w dokumentacjach, aby się zgadzałą charakterystyka zależności oporu do temperatury
 
@@ -84,7 +90,7 @@ temperature = temperature - 273.15;  // Temperature in degree celsius
 
 Większość wzorów jest oparta na jednostce `Kelvin` przez co musieliśmy zastosować konwersję na <sup>o</sup>C.
 
-## 1.6. Podłączenie do WIFI
+## 1.7. Podłączenie do WIFI
 
 Komunikacja WIFI była wyzwaniem gdyż było bardzo dużo problemów ponieważ nie chciała działać w języku C, przez co zostaliśmy zmuszeni do przejścia na język C++ gdzie mogliśmy zawrzeć potrzebną nam bibliotekę `ESP8266WiFi.h` która pozwala na utworzenie topologii siatki sieciowej.
 Wykorzystaliśmy z niej możliwość stworzenia z esp8266 stacji pomiarowej + hosting strony.
@@ -114,7 +120,7 @@ const char *ssid = "<TUTAJ NAZWA WIFI>";
 const char *password = "<TUTAJ HASŁO WIFI>";
 ```
 
-## 1.7. Strona internetowa
+## 1.8. Strona internetowa
 
 Strona została napisana w czystym HTML wraz z inline CSS, musieliśmy tak to zrobić ponieważ możemy załadować na esp8266 tylko jeden plik przez co wszystko musi być "inline", więc gdy upewniliśmy się że strona internetowa działa w wersji `.html` to przenieśliśmy ją do kodu w `.cpp` i wypisywaliśmy ją za pomocą:
 
@@ -122,18 +128,18 @@ Strona została napisana w czystym HTML wraz z inline CSS, musieliśmy tak to zr
 client.println("<tutaj linia kodu html>");
 ```
 
-### 1.7.1. Wygląd strony internetowej
+### 1.8.1. Wygląd strony internetowej
 
 ![html_site](img/html_site.png)
 
-## 1.8. Wnioski
+## 1.9. Wnioski
 
 Projekt był bardzo dużym wyzwaniem ponieważ po raz pierwszy mieliśmy styczność z mikrokontrelami, podzespołami użytymi do zbudowania schematu, potrzebowaliśmy do tego pomocy specjalisty.
 Także narzędzia informatyczne były nowością, sam kod był pisany głównie w C++ którego uczyliśmy się równolegle z tym kursem.
 
 Przeszkodą dla wiedzy okazał się limit plików (1) na urządzeniu przez co wszystko poza C++ należało pisać "inline".
 
-## 1.9. Bibliografia
+## 1.10. Bibliografia
 
 <https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html#connect>
 
