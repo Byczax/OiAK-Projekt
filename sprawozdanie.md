@@ -18,11 +18,14 @@
     - [1.2.1. Wykorzystane narzędzia](#121-wykorzystane-narzędzia)
       - [1.2.1.1. Języki programowania](#1211-języki-programowania)
       - [1.2.1.2. Narzędzia informatyczne](#1212-narzędzia-informatyczne)
-  - [Układ elektroniczny](#układ-elektroniczny)
-  - [1.3. Pomiar temperatury](#13-pomiar-temperatury)
-  - [1.4. Podłączenie do WIFI](#14-podłączenie-do-wifi)
-  - [1.5. Wnioski](#15-wnioski)
-  - [1.6. Bibliografia](#16-bibliografia)
+  - [1.3. Układ elektroniczny](#13-układ-elektroniczny)
+  - [1.4. Wykorzystane biblioteki](#14-wykorzystane-biblioteki)
+  - [1.5. Pomiar temperatury](#15-pomiar-temperatury)
+  - [1.6. Podłączenie do WIFI](#16-podłączenie-do-wifi)
+  - [1.7. Strona internetowa](#17-strona-internetowa)
+    - [1.7.1. Wygląd strony internetowej](#171-wygląd-strony-internetowej)
+  - [1.8. Wnioski](#18-wnioski)
+  - [1.9. Bibliografia](#19-bibliografia)
 
 ## 1.2. Wstęp
 
@@ -48,11 +51,17 @@ Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na pods
 - Github
   - Narzędzie wykorzystane do współpracy zdalnej
 
-## Układ elektroniczny
+## 1.3. Układ elektroniczny
 
 ![schemat](./img/schemee-picture.png)
 
-## 1.3. Pomiar temperatury
+## 1.4. Wykorzystane biblioteki
+
+- `ESP8266WiFi.h` - Pozwala na komunikację wifi, możliwość stworzenia także z urządzenia access pointa
+- `NTPClient.h` - Odczytanie czasu rzeczywistego
+- `WiFiUdp.h` - Ustawianie stałego ip oraz protokoły przesyłania
+
+## 1.5. Pomiar temperatury
 
 Aby wyliczyć temperaturę mierzoną przez termistor musieliśmy skorzystać ze wzorów zamieszczonych w dokumentacjach, aby się zgadzałą charakterystyka zależności oporu do temperatury
 
@@ -73,10 +82,14 @@ temperature = (1 / (A + (B * log(Rth)) + (C * pow((log(Rth)),3))));   // Tempera
 temperature = temperature - 273.15;  // Temperature in degree celsius
 ```
 
-## 1.4. Podłączenie do WIFI
+Większość wzorów jest oparta na jednostce `Kelvin` przez co musieliśmy zastosować konwersję na <sup>o</sup>C.
 
-Komunikacja WIFI nie była wyzwaniem lecz było bardzo dużo problemów ponieważ nie chciała działać w języku C, przez co zostaliśmy zmuszeni do przejścia na język C++ gdzie mogliśmy zawrzeć potrzebną nam bibliotekę `ESP8266WiFi.h` która pozwala na utworzenie topologii siatki sieciowej.
+## 1.6. Podłączenie do WIFI
+
+Komunikacja WIFI była wyzwaniem gdyż było bardzo dużo problemów ponieważ nie chciała działać w języku C, przez co zostaliśmy zmuszeni do przejścia na język C++ gdzie mogliśmy zawrzeć potrzebną nam bibliotekę `ESP8266WiFi.h` która pozwala na utworzenie topologii siatki sieciowej.
 Wykorzystaliśmy z niej możliwość stworzenia z esp8266 stacji pomiarowej + hosting strony.
+
+![wifi](img\esp8266-station-soft-access-point.png)
 
 ```cpp
 // Connect to Wi-Fi network with SSID and password
@@ -90,11 +103,37 @@ Wykorzystaliśmy z niej możliwość stworzenia z esp8266 stacji pomiarowej + ho
   }
 ```
 
-## 1.5. Wnioski
+Do strony internetowej podłączamy się pod ip które zostanie pokazane w konsoli
 
-Projekt był bardzo dużym wyzwaniem ponieważ po raz pierwszy mieliśmy styczność z mikrokontrelami oraz podzespołami użytymi do zbudowania schematu, potrzebowaliśmy do tego pomocy specjalisty.
+![ip](img/ip.png)
 
-## 1.6. Bibliografia
+Należy pamiętać aby wprowadzić w kodzie nazwę urządzenia (routera) do którego chcemy się podłączyć
+
+```cpp
+const char *ssid = "<TUTAJ NAZWA WIFI>";
+const char *password = "<TUTAJ HASŁO WIFI>";
+```
+
+## 1.7. Strona internetowa
+
+Strona została napisana w czystym HTML wraz z inline CSS, musieliśmy tak to zrobić ponieważ możemy załadować na esp8266 tylko jeden plik przez co wszystko musi być "inline", więc gdy upewniliśmy się że strona internetowa działa w wersji `.html` to przenieśliśmy ją do kodu w `.cpp` i wypisywaliśmy ją za pomocą:
+
+```cpp
+client.println("<tutaj linia kodu html>");
+```
+
+### 1.7.1. Wygląd strony internetowej
+
+![html_site](img/html_site.png)
+
+## 1.8. Wnioski
+
+Projekt był bardzo dużym wyzwaniem ponieważ po raz pierwszy mieliśmy styczność z mikrokontrelami, podzespołami użytymi do zbudowania schematu, potrzebowaliśmy do tego pomocy specjalisty.
+Także narzędzia informatyczne były nowością, sam kod był pisany głównie w C++ którego uczyliśmy się równolegle z tym kursem.
+
+Przeszkodą dla wiedzy okazał się limit plików (1) na urządzeniu przez co wszystko poza C++ należało pisać "inline".
+
+## 1.9. Bibliografia
 
 <https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html#connect>
 
