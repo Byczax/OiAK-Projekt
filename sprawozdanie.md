@@ -51,6 +51,7 @@ Nasz projekt miał na celu wykonać zdalny pomiar temperatury w czajniku na pods
 ## Układ elektroniczny
 
 ![schemat](./img/schemee-picture.png)
+
 ## 1.3. Pomiar temperatury
 
 Aby wyliczyć temperaturę mierzoną przez termistor musieliśmy skorzystać ze wzorów zamieszczonych w dokumentacjach, aby się zgadzałą charakterystyka zależności oporu do temperatury
